@@ -177,6 +177,13 @@
   .project .cover.art svg { width: 64px; height: 64px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .95; }
   .cover.net { background: linear-gradient(135deg, #512bd4, #2a1470); }
   .cover.android { background: linear-gradient(135deg, #1f9d6a, #0b4f3a); }
+  .cover.wc { background: linear-gradient(135deg, #b8860b, #6b1d1d 55%, #1b2a4a); }
+  .project .cover.phone-cover { display: flex; justify-content: center; align-items: flex-start; padding-top: 18px; }
+  .phone {
+    width: 42%; aspect-ratio: 287 / 562; border-radius: 16px; overflow: hidden;
+    border: 5px solid #0b0f14; box-shadow: 0 10px 30px rgba(0,0,0,.45); background: #000;
+  }
+  .project .cover .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
   .project .body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .project h3 { font-size: 18px; font-weight: 700; }
   .project .kind { font-size: 13px; color: var(--accent-ink); font-weight: 600; }
@@ -377,17 +384,16 @@
       <div class="projects">
 
         <article class="card project">
-          <div class="cover"><img src="img/inventario.png" alt="Listado de productos de la aplicación de inventario" loading="lazy"></div>
+          <div class="cover art wc">
+            <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
+          </div>
           <div class="body">
-            <span class="kind">Aplicación web + API REST · En equipo</span>
-            <h3>Inventario de Productos</h3>
-            <p>Gestión de productos y marcas con listado, creación, edición, carga de imágenes y activación de productos. API REST propia en Node.js/Express con Sequelize.</p>
-            <div class="tags"><span>Angular 20</span><span>TypeScript</span><span>Express</span><span>Sequelize</span><span>PostgreSQL</span></div>
-            <div class="links">
-              <a href="https://inventario-productos-phi.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
-              <a href="https://github.com/yeison1305/InventarioProductos" target="_blank" rel="noopener">Frontend ↗</a>
-              <a href="https://github.com/yeison1305/ApiPRoductos" target="_blank" rel="noopener">API ↗</a>
-            </div>
+            <span class="kind">Plataforma web + microservicio IA · En equipo</span>
+            <h3>World Cup 2026 Predictor</h3>
+            <p>Plataforma del Mundial 2026 con fase de grupos, tabla de posiciones, llaves eliminatorias y partidos en vivo simulados. Un microservicio en Java/Spring Boot genera predicciones con IA (DeepSeek). Login con Google, recuperación de contraseña por correo, API documentada con Swagger, 30 tests con Jest y despliegue con Docker Compose.</p>
+            <div class="tags"><span>React</span><span>Node.js</span><span>Express</span><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>MySQL</span><span>Docker</span><span>Jest</span></div>
+            <!-- WORLDCUP_LINKS: el enlace al repo se agrega cuando las credenciales expuestas estén rotadas y limpias -->
+            <div class="links"><span class="none">Proyecto académico en equipo</span></div>
           </div>
         </article>
 
@@ -405,12 +411,12 @@
         </article>
 
         <article class="card project">
-          <div class="cover art android">
-            <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/><path d="m12 6 1.2 2.6 2.8.3-2.1 1.9.6 2.8-2.5-1.4-2.5 1.4.6-2.8L8 8.9l2.8-.3z"/></svg>
+          <div class="cover phone-cover android">
+            <div class="phone"><img src="img/starwars-1.png" alt="Pantalla de inicio de la app Star Wars Universe Explorer" loading="lazy"></div>
           </div>
           <div class="body">
             <span class="kind">Aplicación Android nativa</span>
-            <h3>Star Wars App</h3>
+            <h3>Star Wars Universe Explorer</h3>
             <p>App que consume la API pública de Star Wars (SWAPI) para explorar personajes, películas, planetas, naves y vehículos, con arquitectura MVVM y navegación lista–detalle.</p>
             <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>MVVM</span><span>Retrofit</span></div>
             <div class="links"><a href="https://github.com/yeison1305/Proyecto_moviles" target="_blank" rel="noopener">Código ↗</a></div>
