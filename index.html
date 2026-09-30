@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yeison Duque Ossa · Desarrollador Full-Stack</title>
+<meta name="description" content="Portafolio de Yeison Duque Ossa, estudiante de Ingeniería en Informática y desarrollador full-stack en Manizales, Colombia.">
+<meta property="og:title" content="Yeison Duque Ossa · Desarrollador Full-Stack">
+<meta property="og:description" content="React, Angular, Node.js, ASP.NET Core y bases de datos relacionales. Proyectos y experiencia.">
+<meta property="og:image" content="img/tienda.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232f80c2'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' fill='white' text-anchor='middle'>YD</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #eef3f9;
+    --ink: #141a24;
+    --muted: #5b6475;
+    --line: #dde3eb;
+    --accent: #2f80c2;
+    --accent-ink: #1f4e79;
+    --accent-soft: #e3effa;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1420;
+      --surface: #131c2b;
+      --surface-2: #1a2537;
+      --ink: #e8edf4;
+      --muted: #9aa6b8;
+      --line: #243148;
+      --accent: #5aa7e6;
+      --accent-ink: #8cc4f0;
+      --accent-soft: #17304a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1420;
+    --surface: #131c2b;
+    --surface-2: #1a2537;
+    --ink: #e8edf4;
+    --muted: #9aa6b8;
+    --line: #243148;
+    --accent: #5aa7e6;
+    --accent-ink: #8cc4f0;
+    --accent-soft: #17304a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Navegación ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .logo { font-weight: 800; letter-spacing: -.02em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; font-weight: 500; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .theme-btn {
+    width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink); cursor: pointer; display: grid; place-items: center;
+  }
+  .theme-btn svg { width: 16px; height: 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 80px 0 64px; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--accent-ink);
+    background: var(--accent-soft); padding: 5px 12px; border-radius: 99px;
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+  .hero h1 { font-size: clamp(38px, 6vw, 60px); font-weight: 800; letter-spacing: -.035em; line-height: 1.05; margin: 18px 0 14px; }
+  .hero h1 span { color: var(--accent); }
+  .hero p.lead { font-size: 18px; color: var(--muted); max-width: 580px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 15px; padding: 11px 18px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface); transition: transform .15s, border-color .15s;
+  }
+  .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .avatar {
+    width: 240px; height: 240px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #16324f);
+    display: grid; place-items: center; overflow: hidden;
+    box-shadow: 0 0 0 8px var(--surface), 0 0 0 9px var(--line), var(--shadow);
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar .initials { font-size: 72px; font-weight: 800; color: #fff; letter-spacing: -.04em; }
+
+  /* ---------- Secciones ---------- */
+  section.block { padding: 64px 0; }
+  .sec-title { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .sec-title .num { font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--accent); }
+  .sec-title h2 { font-size: 30px; font-weight: 800; letter-spacing: -.025em; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span {
+    font-size: 12.5px; font-weight: 500; padding: 3px 10px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--accent-ink);
+  }
+
+  /* Sobre mí */
+  .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+  .about .card { padding: 28px; }
+  .about p + p { margin-top: 12px; }
+  .about p { color: var(--muted); }
+  .about strong { color: var(--ink); }
+  .facts { list-style: none; display: grid; gap: 14px; }
+  .facts li { display: flex; gap: 12px; align-items: flex-start; }
+  .facts .ic { flex: none; width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; }
+  .facts .ic svg { width: 18px; height: 18px; fill: none; stroke: var(--accent-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .facts b { display: block; font-size: 14px; }
+  .facts small { color: var(--muted); font-size: 13.5px; }
+
+  /* Experiencia destacada */
+  .featured { overflow: hidden; }
+  .featured .shot { position: relative; border-bottom: 1px solid var(--line); background: #000; }
+  .featured .shot img { width: 100%; aspect-ratio: 16/8; object-fit: cover; object-position: center 30%; }
+  .featured .badge {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(0,0,0,.7); color: #fff; font-size: 12.5px; font-weight: 600;
+    padding: 5px 11px; border-radius: 99px; backdrop-filter: blur(6px);
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .featured .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+  .featured .body { padding: 28px; }
+  .featured .head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .featured h3 { font-size: 24px; font-weight: 800; letter-spacing: -.02em; }
+  .featured .role { color: var(--muted); font-weight: 500; }
+  .date { font-size: 13px; font-weight: 600; color: var(--accent-ink); background: var(--accent-soft); padding: 4px 11px; border-radius: 99px; white-space: nowrap; }
+  .featured .desc { color: var(--muted); margin: 14px 0 18px; max-width: 760px; }
+  .highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 22px 0; }
+  .hl { background: var(--surface-2); border-radius: 12px; padding: 16px 18px; }
+  .hl b { display: block; margin-bottom: 4px; }
+  .hl p { font-size: 14.5px; color: var(--muted); }
+  .hl code { font-family: "JetBrains Mono", monospace; font-size: 13px; background: var(--accent-soft); color: var(--accent-ink); padding: 1px 5px; border-radius: 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+  /* Proyectos */
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .project { display: flex; flex-direction: column; overflow: hidden; transition: transform .2s, border-color .2s; }
+  .project:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .project .cover { aspect-ratio: 16/10; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .project .cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .project .cover.art { display: grid; place-items: center; }
+  .project .cover.art svg { width: 64px; height: 64px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .95; }
+  .cover.net { background: linear-gradient(135deg, #512bd4, #2a1470); }
+  .cover.android { background: linear-gradient(135deg, #1f9d6a, #0b4f3a); }
+  .project .body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .project h3 { font-size: 18px; font-weight: 700; }
+  .project .kind { font-size: 13px; color: var(--accent-ink); font-weight: 600; }
+  .project p { font-size: 14.5px; color: var(--muted); flex: 1; }
+  .project .links { display: flex; gap: 14px; font-size: 14px; font-weight: 600; color: var(--accent); margin-top: 4px; }
+  .project .links a:hover { text-decoration: underline; }
+  .project .links .none { color: var(--muted); font-weight: 500; }
+
+  /* Habilidades */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill { padding: 20px; }
+  .skill h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .skill h3 svg { width: 18px; height: 18px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Educación */
+  .edu { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+  .edu .card { padding: 24px; }
+  .edu h3 { font-size: 18px; font-weight: 700; }
+  .edu .where { color: var(--muted); margin: 2px 0 14px; }
+  .edu .row { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+  .langs { list-style: none; display: grid; gap: 10px; margin-top: 6px; }
+  .langs li { display: flex; justify-content: space-between; gap: 10px; }
+  .langs span { color: var(--muted); }
+
+  /* Contacto */
+  .contact { text-align: center; padding: 56px 28px; }
+  .contact h2 { font-size: 32px; font-weight: 800; letter-spacing: -.025em; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 10px auto 26px; }
+  .contact .cta { justify-content: center; margin-top: 0; }
+
+  footer { padding: 36px 0 48px; text-align: center; font-size: 13.5px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .projects, .skills { grid-template-columns: 1fr 1fr; }
+    .about, .edu { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .nav-links a { display: none; }
+    .hero { padding: 48px 0 32px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+    .avatar { width: 150px; height: 150px; order: -1; }
+    .avatar .initials { font-size: 46px; }
+    section.block { padding: 44px 0; }
+    .projects, .skills, .highlights { grid-template-columns: 1fr; }
+    .featured .body, .about .card { padding: 20px; }
+    .featured .shot img { aspect-ratio: 16/10; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">Yeison<span>.</span>dev</a>
+    <div class="nav-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Cambiar tema claro/oscuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Disponible para prácticas y primer empleo</span>
+      <h1>Hola, soy <span>Yeison Duque</span>.<br>Desarrollador Full-Stack.</h1>
+      <p class="lead">
+        Estudiante de 8.º semestre de Ingeniería en Informática en la Universidad de Caldas.
+        Construyo aplicaciones web completas, desde la base de datos hasta la interfaz, con React, Angular, Node.js y ASP.NET Core.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#proyectos">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Ver proyectos
+        </a>
+        <a class="btn" href="cv-yeison-duque.pdf" download>
+          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          Descargar hoja de vida
+        </a>
+        <a class="btn" href="https://github.com/yeison1305" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.5V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <!-- FOTO: guarda tu foto como img/foto.jpg y aparece sola -->
+    <div class="avatar">
+      <img src="img/foto.jpg" alt="Foto de Yeison Duque Ossa" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'initials',textContent:'YD'}))">
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= SOBRE MÍ ================= -->
+  <section class="block" id="sobre-mi">
+    <div class="wrap">
+      <div class="sec-title"><span class="num">01</span><h2>Sobre mí</h2></div>
+      <div class="about">
+        <div class="card">
+          <p>
+            Me gusta construir software que se use de verdad. Mi proyecto más grande es la <strong>tienda virtual de FIVE TO FIVE</strong>,
+            una marca de ropa streetwear: la diseñé, programé y desplegué yo solo, y hoy está en producción.
+          </p>
+          <p>
+            Me siento cómodo en todo el stack: interfaces con <strong>React y Angular</strong>, APIs con <strong>Node.js/Express y ASP.NET Core</strong>,
+            y bases de datos relacionales con <strong>PostgreSQL y SQL Server</strong>. También he desarrollado apps Android nativas con Kotlin y Jetpack Compose.
+          </p>
+          <p>
+            Busco mis <strong>prácticas profesionales o mi primer empleo</strong> en un equipo donde pueda aportar código limpio y seguir aprendiendo.
+          </p>
+        </div>
+        <div class="card">
+          <ul class="facts">
+            <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+              <div><b>Ingeniería en Informática</b><small>Universidad de Caldas · 8.º semestre</small></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-13a7 7 0 0 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+              <div><b>Manizales, Colombia</b><small>Abierto a trabajo presencial, híbrido o remoto</small></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+              <div><b>Freelance full-stack</b><small>Tienda virtual en producción · desde julio de 2026</small></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+              <div><b>Español nativo · Inglés B1</b><small>Lectura fluida de documentación técnica</small></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCIA ================= -->
+  <section class="block" id="experiencia">
+    <div class="wrap">
+      <div class="sec-title"><span class="num">02</span><h2>Experiencia</h2></div>
+      <article class="card featured">
+        <div class="shot">
+          <img src="img/tienda.png" alt="Página de inicio de la tienda virtual FIVE TO FIVE" loading="lazy">
+          <span class="badge"><span class="dot"></span>En producción</span>
+        </div>
+        <div class="body">
+          <div class="head">
+            <div>
+              <h3>FIVE TO FIVE · Tienda virtual</h3>
+              <div class="role">Desarrollador Full-Stack (Freelance) · Proyecto individual</div>
+            </div>
+            <span class="date">Jul 2026 – Actual</span>
+          </div>
+          <p class="desc">
+            E-commerce completo para una marca de ropa streetwear de Manizales: catálogo con variantes (talla, color, stock y SKU),
+            carrito persistente, checkout con pago contra entrega, cuentas de cliente y un panel administrativo para gestionar el negocio.
+          </p>
+          <div class="tags">
+            <span>React 18</span><span>Vite</span><span>Tailwind CSS</span><span>TypeScript</span><span>Node.js</span><span>Express 5</span>
+            <span>Prisma</span><span>PostgreSQL</span><span>Supabase</span><span>JWT</span><span>Zod</span><span>Vercel</span><span>Render</span>
+          </div>
+          <div class="highlights">
+            <div class="hl">
+              <b>Pedidos sin duplicados</b>
+              <p>Cada checkout genera una <code>requestKey</code> única y el backend valida el stock dentro de una transacción: un doble clic o una recarga no crea dos pedidos.</p>
+            </div>
+            <div class="hl">
+              <b>Seguridad</b>
+              <p>Autenticación JWT con roles (ADMIN / CUSTOMER), política estricta de contraseñas, validación con Zod, Helmet y rate limiting.</p>
+            </div>
+            <div class="hl">
+              <b>Panel administrativo</b>
+              <p>Métricas de ventas, CRUD de productos con variantes y seguimiento de pedidos: pendiente → pagado → enviado → entregado.</p>
+            </div>
+            <div class="hl">
+              <b>Correos y newsletter</b>
+              <p>Confirmación de pedido y envío masivo de newsletter con la API de Brevo, por lotes y con límite de velocidad.</p>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://tienda-virtual-jade-delta.vercel.app/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 3h7v7M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+              Ver sitio en vivo
+            </a>
+            <a class="btn" href="https://github.com/yeison1305/Tienda_virtual" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+              Código fuente
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= PROYECTOS ================= -->
+  <section class="block" id="proyectos">
+    <div class="wrap">
+      <div class="sec-title"><span class="num">03</span><h2>Proyectos</h2></div>
+      <div class="projects">
+
+        <article class="card project">
+          <div class="cover"><img src="img/inventario.png" alt="Listado de productos de la aplicación de inventario" loading="lazy"></div>
+          <div class="body">
+            <span class="kind">Aplicación web + API REST · En equipo</span>
+            <h3>Inventario de Productos</h3>
+            <p>Gestión de productos y marcas con listado, creación, edición, carga de imágenes y activación de productos. API REST propia en Node.js/Express con Sequelize.</p>
+            <div class="tags"><span>Angular 20</span><span>TypeScript</span><span>Express</span><span>Sequelize</span><span>PostgreSQL</span></div>
+            <div class="links">
+              <a href="https://inventario-productos-phi.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
+              <a href="https://github.com/yeison1305/InventarioProductos" target="_blank" rel="noopener">Frontend ↗</a>
+              <a href="https://github.com/yeison1305/ApiPRoductos" target="_blank" rel="noopener">API ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="cover art net">
+            <svg viewBox="0 0 24 24"><path d="m15 12-8.5 8.5a2.1 2.1 0 0 1-3-3L12 9"/><path d="M17.6 15 22 10.6M20.9 11.7l-1.3-1.3a2 2 0 0 1-.6-1.4v-.9l-2.3-2.3a5.5 5.5 0 0 0-3.8-1.6H9.6l.9.9A6.2 6.2 0 0 1 12.3 9v1.6l2 2h1a2 2 0 0 1 1.4.6l1.3 1.3"/></svg>
+          </div>
+          <div class="body">
+            <span class="kind">Sistema de gestión comercial</span>
+            <h3>Ferretería Manizales</h3>
+            <p>Aplicación web para gestionar inventario y movimientos de stock, clientes, pedidos, facturación y entregas. Autenticación con roles de administrador y empleado, 14 entidades relacionales y manual de usuario.</p>
+            <div class="tags"><span>C#</span><span>ASP.NET Core MVC</span><span>EF Core</span><span>SQL Server</span></div>
+            <div class="links"><span class="none">Proyecto académico · código privado</span></div>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="cover art android">
+            <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/><path d="m12 6 1.2 2.6 2.8.3-2.1 1.9.6 2.8-2.5-1.4-2.5 1.4.6-2.8L8 8.9l2.8-.3z"/></svg>
+          </div>
+          <div class="body">
+            <span class="kind">Aplicación Android nativa</span>
+            <h3>Star Wars App</h3>
+            <p>App que consume la API pública de Star Wars (SWAPI) para explorar personajes, películas, planetas, naves y vehículos, con arquitectura MVVM y navegación lista–detalle.</p>
+            <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>MVVM</span><span>Retrofit</span></div>
+            <div class="links"><a href="https://github.com/yeison1305/Proyecto_moviles" target="_blank" rel="noopener">Código ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HABILIDADES ================= -->
+  <section class="block" id="habilidades">
+    <div class="wrap">
+      <div class="sec-title"><span class="num">04</span><h2>Habilidades</h2></div>
+      <div class="skills">
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>Frontend</h3>
+          <div class="tags"><span>React</span><span>Angular</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS</span><span>Material UI</span><span>Framer Motion</span><span>HTML/CSS</span></div>
+        </div>
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>Backend</h3>
+          <div class="tags"><span>Node.js</span><span>Express</span><span>ASP.NET Core</span><span>C#</span><span>APIs REST</span><span>JWT</span><span>Zod</span><span>Java</span><span>Python</span></div>
+        </div>
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Datos</h3>
+          <div class="tags"><span>PostgreSQL</span><span>SQL Server</span><span>SQL</span><span>Prisma</span><span>Sequelize</span><span>EF Core</span><span>Hadoop</span></div>
+        </div>
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Móvil</h3>
+          <div class="tags"><span>Android</span><span>Kotlin</span><span>Jetpack Compose</span><span>MVVM</span><span>Retrofit</span></div>
+        </div>
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4.5 12a3.5 3.5 0 0 0 1 7h12z"/></svg>Cloud y DevOps</h3>
+          <div class="tags"><span>Git/GitHub</span><span>Docker</span><span>Supabase</span><span>Vercel</span><span>Render</span><span>Postman</span></div>
+        </div>
+        <div class="card skill">
+          <h3><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg>Metodologías y blandas</h3>
+          <div class="tags"><span>Scrum</span><span>UML</span><span>Trabajo en equipo</span><span>Resolución de problemas</span><span>Aprendizaje autónomo</span><span>Comunicación</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCACIÓN ================= -->
+  <section class="block" id="educacion">
+    <div class="wrap">
+      <div class="sec-title"><span class="num">05</span><h2>Educación</h2></div>
+      <div class="edu">
+        <div class="card">
+          <div class="row">
+            <div>
+              <h3>Ingeniería en Informática</h3>
+              <div class="where">Universidad de Caldas, Manizales · Cursando 8.º semestre</div>
+            </div>
+            <span class="date">2023 – 2027</span>
+          </div>
+          <div class="tags">
+            <span>Ingeniería de Software</span><span>Arquitectura de Software</span><span>Bases de Datos</span><span>Estructuras de Datos</span>
+            <span>Redes</span><span>Big Data</span><span>Minería de Datos</span><span>Dispositivos Móviles</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Idiomas</h3>
+          <ul class="langs">
+            <li><b>Español</b><span>Nativo</span></li>
+            <li><b>Inglés</b><span>Intermedio (B1)</span></li>
+          </ul>
+          <p class="where" style="margin:12px 0 0;font-size:14px">5 niveles de inglés cursados en la Universidad de Caldas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section class="block" id="contacto">
+    <div class="wrap">
+      <div class="card contact">
+        <h2>¿Hablamos?</h2>
+        <p>Estoy buscando prácticas profesionales o mi primer empleo como desarrollador. Escríbeme y te respondo pronto.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:yeisonduque120@gmail.com">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            yeisonduque120@gmail.com
+          </a>
+          <a class="btn" href="https://github.com/yeison1305" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.5V22"/></svg>
+            GitHub
+          </a>
+          <!-- LinkedIn: cuando tengas el perfil, quita el comentario y pon tu URL
+          <a class="btn" href="https://linkedin.com/in/TU-USUARIO" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg>
+            LinkedIn
+          </a>
+          -->
+          <a class="btn" href="cv-yeison-duque.pdf" download>
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            Hoja de vida (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Yeison Duque Ossa · Manizales, Colombia</div>
+</footer>
+
+<script>
+  // Tema claro/oscuro: respeta el del sistema y recuerda la elección del visitante
+  (function () {
+    const root = document.documentElement;
+    try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
